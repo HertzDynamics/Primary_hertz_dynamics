@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -57,14 +57,11 @@ const Home: React.FC = () => {
           <p className="text-xl md:text-2xl mb-8 text-primary-light scroll-reveal">
             {t('hero.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center scroll-reveal">
+          <div className="flex justify-center scroll-reveal">
             <Button asChild variant="hero" size="lg">
               <Link to="/products">
                 {t('hero.cta')} <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-            </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-              <Play className="mr-2 w-5 h-5" /> Watch Demo
             </Button>
           </div>
         </div>

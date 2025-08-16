@@ -142,22 +142,6 @@ const Products: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Take Flight?
-          </h2>
-          <p className="text-xl mb-8 text-primary-light">
-            Contact our team to find the perfect drone solution for your needs.
-          </p>
-          <Button asChild size="lg" className="bg-white text-primary hover:bg-primary-light hover:text-white">
-            <a href="/enquiry">
-              Get Custom Quote <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
-          </Button>
-        </div>
-      </section>
 
       <Footer />
     </div>
