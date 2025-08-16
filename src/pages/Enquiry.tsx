@@ -1,0 +1,282 @@
+import React, { useState } from 'react';
+import { Send, Phone, Mail, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+
+const Enquiry: React.FC = () => {
+  const { t } = useLanguage();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    requirements: '',
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Simulate email sending (in production, this would call your backend API)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Enquiry Sent Successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({ name: '', email: '', phone: '', requirements: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send enquiry. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: 'Phone',
+      value: '+1 (234) 567-8900',
+      href: 'tel:+1234567890',
+    },
+    {
+      icon: Mail,
+      title: 'Email',
+      value: 'info@hertzdynamics.com',
+      href: 'mailto:info@hertzdynamics.com',
+    },
+    {
+      icon: MapPin,
+      title: 'Address',
+      value: '123 Innovation Drive, Tech City, TC 12345',
+      href: '#',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      
+      {/* Header Section */}
+      <section className="pt-24 pb-16 bg-gradient-accent relative">
+        <div className="absolute inset-0 hex-pattern opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">
+            {t('enquiry.title')}
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            {t('enquiry.subtitle')}
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl text-primary">Send us a Message</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <Label htmlFor="name">{t('form.name')} *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="mt-2"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="email">{t('form.email')} *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="mt-2"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="phone">{t('form.phone')}</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="mt-2"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="requirements">{t('form.requirements')} *</Label>
+                    <Textarea
+                      id="requirements"
+                      name="requirements"
+                      required
+                      value={formData.requirements}
+                      onChange={handleInputChange}
+                      className="mt-2 min-h-32"
+                      placeholder="Tell us about your drone requirements..."
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-primary hover:opacity-90" 
+                    size="lg"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>Sending...</>
+                    ) : (
+                      <>
+                        {t('form.submit')} <Send className="ml-2 w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-primary mb-6">Get in Touch</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  Ready to revolutionize your operations with cutting-edge drone technology? 
+                  Our team of experts is here to help you find the perfect solution for your needs.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map(({ icon: Icon, title, value, href }) => (
+                  <div key={title} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">{title}</h3>
+                      {href === '#' ? (
+                        <p className="text-muted-foreground">{value}</p>
+                      ) : (
+                        <a 
+                          href={href} 
+                          className="text-primary hover:text-primary-dark transition-colors"
+                        >
+                          {value}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <Card className="bg-gradient-accent border-none">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-4">Why Choose Hertz Dynamics?</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-3 flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Industry-leading technology and innovation</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-3 flex-shrink-0"></div>
+                      <span className="text-muted-foreground">24/7 customer support and service</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-3 flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Custom solutions for your specific needs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-3 flex-shrink-0"></div>
+                      <span className="text-muted-foreground">Worldwide shipping and support</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gradient-accent">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
+            <p className="text-muted-foreground">Common questions about our products and services</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-primary mb-3">What's included with my drone purchase?</h3>
+                <p className="text-muted-foreground">All our drones come with a complete kit including the aircraft, controller, batteries, charger, carrying case, and comprehensive documentation.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-primary mb-3">Do you offer training and support?</h3>
+                <p className="text-muted-foreground">Yes! We provide comprehensive training programs, technical support, and ongoing maintenance services for all our professional customers.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-primary mb-3">What's your warranty policy?</h3>
+                <p className="text-muted-foreground">All Hertz Dynamics drones come with a 2-year manufacturer warranty covering defects and a 6-month accidental damage protection plan.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-primary mb-3">Can you customize drones for specific needs?</h3>
+                <p className="text-muted-foreground">Absolutely! We specialize in custom drone solutions tailored to your specific industry requirements and operational needs.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Enquiry;
