@@ -1,16 +1,16 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import hertzLogo from '@/assets/hertz-logo.png';
+import hertzLogo from '@/assets/Pi7_cropper.png';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    // { icon: Facebook, href: '#', label: 'Facebook' },
+    // { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    // { icon: Linkedin, href: '#', label: 'LinkedIn' },
   ];
 
   return (
@@ -23,12 +23,15 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <img src={hertzLogo} alt="Hertz Dynamics" className="w-12 h-12" />
-              <span className="text-2xl font-bold">Hertz Dynamics</span>
+              <img src={hertzLogo} alt="Hertz Dynamics" className="w-10 h-12" />
+              <span className="text-2xl font-bold">{t('company.name')}</span>
             </div>
-            <p className="text-primary-light mb-6 max-w-md">
-              {t('about.description')}
+            {/* <p className="text-primary-light mb-6 max-w-md">
+              {t('about.description1')}
             </p>
+            <p className="text-primary-light mb-6 max-w-md">
+              {t('about.description2')}
+            </p> */}
             
             {/* Social Media */}
             <div className="flex space-x-4">
@@ -52,9 +55,9 @@ const Footer: React.FC = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                 <div>
-                  <p>123 Innovation Drive</p>
-                  <p>Tech City, TC 12345</p>
-                  <p>United States</p>
+                  <p>#103, Level-1, CII, National Institute of Technology, Warangal</p>
+                  <p>Telangana – 506 004</p>
+                  <p>India</p>
                 </div>
               </div>
             </div>
@@ -66,15 +69,15 @@ const Footer: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 flex-shrink-0" />
-                <a href="mailto:info@hertzdynamics.com" className="hover:text-primary-light transition-colors">
-                  info@hertzdynamics.com
-                </a>
+                {/* <a href="mailto:info@hertzdynamics.com" className="hover:text-primary-light transition-colors"> */}
+                  <p>hertzdynamics@gmail.com</p>
+                {/* </a> */}
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 flex-shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-primary-light transition-colors">
-                  +1 (234) 567-8900
-                </a>
+                {/* <a href="tel:+1234567890" className="hover:text-primary-light transition-colors"> */}
+                  <p>+91-833-2923-289.</p>
+                {/* </a> */}
               </div>
             </div>
           </div>
@@ -82,9 +85,9 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-primary-light text-sm">
+          {/* <p className="text-primary-light text-sm">
             © 2024 Hertz Dynamics. All rights reserved.
-          </p>
+          </p> */}
           <div className="flex space-x-6 text-sm mt-4 md:mt-0">
             <a href="#" className="hover:text-primary-light transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary-light transition-colors">Terms of Service</a>

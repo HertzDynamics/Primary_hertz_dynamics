@@ -34,6 +34,7 @@ export const useLanguage = () => {
 // Translation data - simplified for demo, in production would use proper i18n
 const translations: Record<string, Record<string, string>> = {
   en: {
+    'company.name': 'Hertz Dynamics',
     'nav.home': 'Home',
     'nav.products': 'Products',
     'nav.about': 'About',
@@ -45,7 +46,8 @@ const translations: Record<string, Record<string, string>> = {
     'products.title': 'Our Products',
     'products.subtitle': 'Cutting-edge drone technology for every application',
     'about.title': 'About Hertz Dynamics',
-    'about.description': 'Leading innovation in drone technology since our founding. We specialize in creating advanced aerial solutions that transform industries and enhance human capabilities.',
+    // 'about.description': 'Leading innovation in drone technology since our founding. We specialize in creating advanced aerial solutions that transform industries and enhance human capabilities.',
+    'about.description': 'Hertz Dynamics is committed to manufacture and supply motors, transformers, test & measuring equipment/instruments, drones with its essentials & allied accessories which include control platform, batteries, encoders, cables, insulators, support structures and satellite communication services. We are passionate about providing the high-quality products since our incorporation in 2025 with headquarters in Warangal, India.We focus on producing top-quality machineries and equipment that meet the industry standards and offer extended durability, reliability with affordable cost. We take pride in ourselves on supplying high-precision electrical, electronic, telecommunication components, and surveying strictly adhering to ISO 9001 standards. Our products are widely used in industrial machinery, electric vehicles, agriculture, household appliances, toys, aeronautical, nautical and electronic equipment.',
     'enquiry.title': 'Get in Touch',
     'enquiry.subtitle': 'Ready to discuss your drone technology needs?',
     'form.name': 'Full Name',
@@ -57,6 +59,7 @@ const translations: Record<string, Record<string, string>> = {
     'footer.contact': 'Contact Information'
   },
   hi: {
+    'company.name': 'हर्ट्ज़ डायनामिक्स',
     'nav.home': 'होम',
     'nav.products': 'उत्पाद',
     'nav.about': 'हमारे बारे में',
@@ -80,6 +83,7 @@ const translations: Record<string, Record<string, string>> = {
     'footer.contact': 'संपर्क जानकारी'
   },
   te: {
+    'company.name': 'హెర్ట్జ్ డైనమిక్స్ ప్రధాన ',
     'nav.home': 'హోమ్',
     'nav.products': 'ఉత్పత్తులు',
     'nav.about': 'మా గురించి',
@@ -103,6 +107,7 @@ const translations: Record<string, Record<string, string>> = {
     'footer.contact': 'సంప్రదింపు సమాచారం'
   },
   ta: {
+    'company.name': 'ஹெர்ட்ஸ் டைனமிக்ஸ் ',
     'nav.home': 'வீடு',
     'nav.products': 'தயாரிப்புகள்',
     'nav.about': 'எங்களைப் பற்றி',
@@ -126,6 +131,7 @@ const translations: Record<string, Record<string, string>> = {
     'footer.contact': 'தொடர்பு தகவல்'
   },
   fr: {
+    'company.name': 'Hertz Dynamics',
     'nav.home': 'Accueil',
     'nav.products': 'Produits',
     'nav.about': 'À propos',
@@ -149,6 +155,7 @@ const translations: Record<string, Record<string, string>> = {
     'footer.contact': 'Informations de contact'
   },
   no: {
+    'company.name': 'Hertz Dynamics',
     'nav.home': 'Hjem',
     'nav.products': 'Produkter',
     'nav.about': 'Om oss',

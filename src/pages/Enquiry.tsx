@@ -27,48 +27,57 @@ const Enquiry: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    try {
-      // Simulate email sending (in production, this would call your backend API)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+  try {
+    const response = await fetch("https://formspree.io/f/mldlkjgo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
       toast({
         title: "Enquiry Sent Successfully!",
         description: "We'll get back to you within 24 hours.",
       });
-
-      // Reset form
-      setFormData({ name: '', email: '', phone: '', requirements: '' });
-    } catch (error) {
+      setFormData({ name: "", email: "", phone: "", requirements: "" }); // reset form
+    } else {
       toast({
         title: "Error",
         description: "Failed to send enquiry. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } catch (error) {
+    toast({
+      title: "Error",
+      description: "Something went wrong. Please try again later.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const contactInfo = [
     {
       icon: Phone,
       title: 'Phone',
-      value: '+1 (234) 567-8900',
-      href: 'tel:+1234567890',
+      value: '+91-833-2923-289',
+      href: 'tel:+91-833-2923-289',
     },
     {
       icon: Mail,
       title: 'Email',
-      value: 'info@hertzdynamics.com',
-      href: 'mailto:info@hertzdynamics.com',
+      value: 'hertzdynamics@gmail.com',
+      href: 'mailto:hertzdynamics@gmail.com',
     },
     {
       icon: MapPin,
       title: 'Address',
-      value: '123 Innovation Drive, Tech City, TC 12345',
+      value: '133, Level-1, CII, National Institute of Technology, Warangal, Telangana – 506 004. INDIA.',
       href: '#',
     },
   ];
@@ -76,7 +85,7 @@ const Enquiry: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Header Section */}
       <section className="pt-24 pb-16 bg-gradient-accent relative">
         <div className="absolute inset-0 hex-pattern opacity-10"></div>
@@ -155,9 +164,9 @@ const Enquiry: React.FC = () => {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-primary hover:opacity-90" 
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-primary hover:opacity-90"
                     size="lg"
                     disabled={isSubmitting}
                   >
@@ -178,7 +187,7 @@ const Enquiry: React.FC = () => {
               <div>
                 <h2 className="text-3xl font-bold text-primary mb-6">Get in Touch</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Ready to revolutionize your operations with cutting-edge drone technology? 
+                  Ready to revolutionize your operations with cutting-edge drone technology?
                   Our team of experts is here to help you find the perfect solution for your needs.
                 </p>
               </div>
@@ -194,12 +203,12 @@ const Enquiry: React.FC = () => {
                       {href === '#' ? (
                         <p className="text-muted-foreground">{value}</p>
                       ) : (
-                        <a 
-                          href={href} 
-                          className="text-primary hover:text-primary-dark transition-colors"
-                        >
-                          {value}
-                        </a>
+                        // <a 
+                        //   href={href} 
+                        //   className="text-primary hover:text-primary-dark transition-colors"
+                        // >
+                        <p>{value}</p>
+                        // </a>
                       )}
                     </div>
                   </div>
@@ -280,3 +289,4 @@ const Enquiry: React.FC = () => {
 };
 
 export default Enquiry;
+

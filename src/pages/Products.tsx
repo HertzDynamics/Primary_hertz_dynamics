@@ -5,9 +5,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import drone1 from '@/assets/drone-1.jpg';
-import drone2 from '@/assets/drone-2.jpg';
-import drone3 from '@/assets/drone-3.jpg';
+import drone1 from '@/assets/Drone.png';
+import drone2 from '@/assets/coreless_dc_motor.jpg';
+import drone3 from '@/assets/Axial_flux_motor.png';
+import drone4 from '@/assets/BLDC_motor.png';
+import drone5 from '@/assets/PMSM.png';
+import drone6 from '@/assets/Transformer.jpg';
 
 const Products: React.FC = () => {
   const { t } = useLanguage();
@@ -15,55 +18,55 @@ const Products: React.FC = () => {
   const products = [
     {
       id: 1,
-      name: 'AeroMax Pro',
+      name: 'Drone',
       image: drone1,
-      price: '$2,999',
-      rating: 4.9,
+      // price: '$2,999',
+      // rating: 4.9,
       description: 'Professional 4K aerial photography drone with 30-minute flight time and advanced stabilization.',
       features: ['4K Ultra HD Camera', '30min Flight Time', 'Obstacle Avoidance', 'GPS Tracking'],
     },
     {
       id: 2,
-      name: 'InspectBot Industrial',
+      name: 'Coreless DC Motor',
       image: drone2,
-      price: '$4,599',
-      rating: 4.8,
+      // price: '$4,599',
+      // rating: 4.8,
       description: 'Heavy-duty industrial inspection drone with thermal imaging and weatherproof design.',
       features: ['Thermal Imaging', 'Weatherproof IP67', '45min Flight Time', 'Live Streaming'],
     },
     {
       id: 3,
-      name: 'SpeedRacer X1',
+      name: 'Axial Flux motor',
       image: drone3,
-      price: '$1,299',
-      rating: 4.7,
+      // price: '$1,299',
+      // rating: 4.7,
       description: 'Ultra-fast racing drone with carbon fiber frame and precision controls.',
       features: ['Carbon Fiber Frame', 'High-Speed Motors', 'FPV Camera', 'Aerodynamic Design'],
     },
     {
       id: 4,
-      name: 'AgroSky Mapper',
-      image: drone1,
-      price: '$3,799',
-      rating: 4.9,
+      name: 'BLDC Motor',
+      image: drone4,
+      // price: '$3,799',
+      // rating: 4.9,
       description: 'Agricultural mapping drone with multispectral sensors for crop monitoring.',
       features: ['Multispectral Imaging', 'Crop Analytics', '60min Flight Time', 'Automated Mapping'],
     },
     {
       id: 5,
-      name: 'Rescue Wing Pro',
-      image: drone2,
-      price: '$5,999',
-      rating: 4.8,
+      name: 'PMSM',
+      image: drone5,
+      // price: '$5,999',
+      // rating: 4.8,
       description: 'Search and rescue drone with thermal vision and emergency communications.',
       features: ['Thermal Vision', 'Night Flight', 'Emergency Beacon', 'Long Range'],
     },
     {
       id: 6,
-      name: 'Delivery Express',
-      image: drone3,
-      price: '$2,199',
-      rating: 4.6,
+      name: 'Transformer',
+      image: drone6,
+      // price: '$2,199',
+      // rating: 4.6,
       description: 'Commercial delivery drone with cargo capacity and autonomous navigation.',
       features: ['10kg Payload', 'Autonomous Flight', 'GPS Navigation', 'Return to Base'],
     },
@@ -104,12 +107,12 @@ const Products: React.FC = () => {
                         />
                         <div className="absolute top-4 right-4 bg-white/90 rounded-full px-3 py-1 flex items-center space-x-1">
                           <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-medium">{product.rating}</span>
+                          {/* <span className="text-sm font-medium">{product.rating}</span> */}
                         </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-primary mb-2">{product.name}</h3>
-                        <p className="text-2xl font-bold text-foreground mb-4">{product.price}</p>
+                        {/* <p className="text-2xl font-bold text-foreground mb-4">{product.price}</p> */}
                         <Button className="w-full bg-gradient-primary hover:opacity-90">
                           View Details <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>

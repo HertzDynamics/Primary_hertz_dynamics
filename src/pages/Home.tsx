@@ -27,20 +27,20 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video/Image */}
-        <div 
+        <div
           className="absolute inset-0 transition-all duration-300 ease-out"
           style={{
             transform: `scale(${videoScale})`,
             opacity: videoOpacity,
           }}
         >
-          <img 
-            src={heroDrone} 
-            alt="Drone Hero" 
+          <img
+            src={heroDrone}
+            alt="Drone Hero"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 hero-overlay"></div>
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
             {t('hero.title')}
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-primary-light scroll-reveal">
-            {t('hero.subtitle')}
+            {/* {t('hero.subtitle')} */}
           </p>
           <div className="flex justify-center scroll-reveal">
             <Button asChild variant="hero" size="lg">
@@ -73,13 +73,14 @@ const Home: React.FC = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-primary mb-6">{t('about.title')}</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t('about.description')}
+            <p className="text-xl text-muted-foreground max-w-6xl mx-auto leading-relaxed text-justify">
+              {t("about.description")}
             </p>
+
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-gradient-accent rounded-lg hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl text-white">🚁</span>
@@ -103,7 +104,7 @@ const Home: React.FC = () => {
               <h3 className="text-xl font-semibold mb-3">Built to Last</h3>
               <p className="text-muted-foreground">Durable construction designed to withstand demanding operational environments.</p>
             </div>
-          </div>
+          </div> */}
 
           <div className="text-center mt-12">
             <Button asChild variant="gradient" size="lg">

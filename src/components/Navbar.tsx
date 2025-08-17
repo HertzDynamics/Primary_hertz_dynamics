@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useLanguage, languages } from '@/contexts/LanguageContext';
-import hertzLogo from '@/assets/hertz-logo.png';
+import hertzLogo from '@/assets/Pi7_cropper.png';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +26,12 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-blue-200 backdrop-blur-md border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img src={hertzLogo} alt="Hertz Dynamics" className="w-10 h-10" />
+            <img src={hertzLogo} alt="Hertz Dynamics" className="w-13 h-14" />
             <span className="text-xl font-bold text-primary">Hertz Dynamics</span>
           </Link>
 
