@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin} from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from '@/contexts/LanguageContext';
 import hertzLogo from '@/assets/Pi7_cropper.png';
 
@@ -11,6 +12,8 @@ const Footer: React.FC = () => {
     // { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Instagram, href: '#', label: 'Instagram' },
     // { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: FaWhatsapp, href: 'https://wa.me/your-number', label: 'WhatsApp' },
+
   ];
 
   return (

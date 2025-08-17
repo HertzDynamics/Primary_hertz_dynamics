@@ -12,18 +12,19 @@ const About: React.FC = () => {
 
   const founders = [
     {
-      name: 'Dr. Srinivasan Pradabane',
+      name: t('founder.name'),
       role: 'Founder',
       image: founder1,
-      description: "The primary goal of Hertz Dynamics is to develop cutting-edge drone technology in aeronautical and nautical surveillance using satellite communications. Its allied interests are aligned towards agricultural surveying, supplying the electromechanical needs to household, industrial machinery and its ancillary services.We are committed to quality craftsmanship, and it is reflected through our industry-wide recognitions, patented technologies, advanced business model, global alliances and customer testimonials. We are extremely proud of our successful project implementations across different industries and digital technologies that has helped us deliver quality digital products at pace and on-demand",
+      // description: "The primary goal of Hertz Dynamics is to develop cutting-edge drone technology in aeronautical and nautical surveillance using satellite communications. Its allied interests are aligned towards agricultural surveying, supplying the electromechanical needs to household, industrial machinery and its ancillary services.We are committed to quality craftsmanship, and it is reflected through our industry-wide recognitions, patented technologies, advanced business model, global alliances and customer testimonials. We are extremely proud of our successful project implementations across different industries and digital technologies that has helped us deliver quality digital products at pace and on-demand",
+      description: t('founder.info'),
       achievements: [''],
     },
     {
-      name: 'Dr. Sakunthala Srinivasan',
+      name: t('director.name'),
       role: 'Director',
       image: director,
-      description: 'At Hertz Dynamics, we have established a philosophy of collaborating with our customers and partners in their quest for creating a competitive edge. We have a collaborative and transformative approach for establishing a successful partnership with our clients. Our commitment to quality, passion for technology and ensuring that our clients success is our success has helped us establish long-term relationships with our stakeholders.We thank your interest in Hertz Dynamics and look forward to work with you in future to build products and craft your sustainable journey.'
-      ,
+      // description: 'At Hertz Dynamics, we have established a philosophy of collaborating with our customers and partners in their quest for creating a competitive edge. We have a collaborative and transformative approach for establishing a successful partnership with our clients. Our commitment to quality, passion for technology and ensuring that our clients success is our success has helped us establish long-term relationships with our stakeholders.We thank your interest in Hertz Dynamics and look forward to work with you in future to build products and craft your sustainable journey.',
+      description: t('director.info'),
       achievements: [''],
     },
   ];
@@ -79,9 +80,9 @@ const About: React.FC = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Meet Our Founders</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{t('about.meet')}</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The visionary leaders behind Hertz Dynamics' innovative drone technology.
+              {t('about.belowmeet')}
             </p>
           </div>
 
@@ -102,6 +103,7 @@ const About: React.FC = () => {
                       <p className="text-primary-light font-medium mb-4">{founder.role}</p>
                       <p className="text-muted-foreground mb-6 leading-relaxed">
                         {founder.description}
+                        {/* {t('founder.info')} */}
                       </p>
                       <div>
                         {/* <h4 className="font-semibold text-foreground mb-3">Key Achievements:</h4> */}

@@ -109,7 +109,7 @@ const Home: React.FC = () => {
           <div className="text-center mt-12">
             <Button asChild variant="gradient" size="lg">
               <Link to="/about">
-                Learn More About Us <ArrowRight className="ml-2 w-5 h-5" />
+                {t('learn.btn')}<ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </Button>
           </div>
