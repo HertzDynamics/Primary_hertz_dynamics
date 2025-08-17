@@ -6,6 +6,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import founder1 from '@/assets/founder.jpg';
 import director from '@/assets/director.jpg';
+import member1 from '@/assets/member1.jpg';
+import member2 from '@/assets/member2.jpg';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
@@ -29,20 +31,28 @@ const About: React.FC = () => {
     },
   ];
 
-  const stats = [
-    { icon: Award, value: '50+', label: 'Awards Won' },
-    { icon: Users, value: '200+', label: 'Team Members' },
-    { icon: Globe, value: '25+', label: 'Countries Served' },
-    { icon: Target, value: '99.9%', label: 'Mission Success Rate' },
-  ];
-
-  const timeline = [
-    { year: '2018', event: 'Company Founded', description: 'Started with a vision to revolutionize drone technology' },
-    { year: '2019', event: 'First Product Launch', description: 'Launched our inaugural AeroMax series' },
-    { year: '2020', event: 'Series A Funding', description: 'Raised $15M to expand R&D capabilities' },
-    { year: '2021', event: 'International Expansion', description: 'Entered European and Asian markets' },
-    { year: '2022', event: 'AI Integration', description: 'Introduced autonomous flight AI systems' },
-    { year: '2024', event: 'Industry Leadership', description: 'Became market leader in professional drones' },
+  const team = [
+    {
+      name: t('member1.name'),
+      role: 'Web Developer',
+      image: member1,
+      description: t('member1.info'),
+      // achievements: [''],
+    },
+    {
+      name: t('member2.name'),
+      role: 'Web Developer',
+      image: member2,
+      description: t('member2.info'),
+      // achievements: [''],
+    },
+    // {
+    //   name: t('member3.name'),
+    //   role: 'Web Developer',
+    //   image: member3,
+    //   description: t('member3.info'),
+    //   // achievements: [''],
+    // },
   ];
 
   return (
@@ -89,9 +99,9 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {founders.map((founder) => (
               <Card key={founder.name} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-0">
+                <CardContent className="p-2">
                   <div className="flex flex-col items-center ">
-                    <div className="w-full bg-blue-300">
+                    <div className="rounded-lg w-full bg-[rgba(17,111,234,0.12)] ">
                       <img
                         src={founder.image}
                         alt={founder.name}
@@ -115,6 +125,32 @@ const About: React.FC = () => {
                             </li>
                           ))}
                         </ul> */}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+
+            {team.map((member) => (
+              <Card key={member.name} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-2">
+                  <div className="flex flex-col items-center">
+                    <div className="rounded-lg w-full bg-[rgba(17,111,234,0.12)] ">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-40 h-60 object-cover mx-auto p-2"
+                      />
+                    </div>
+                    <div className="flex flex-row justify-start items-start mt-2 w-full pl-5">
+                      <div className="">
+                        <h3 className="text-2xl font-bold text-primary mb-2 text-justify">{member.name}</h3>
+                        <p className="text-primary-light font-medium mb-1 text-start">{member.role}</p>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {member.description}
+                          {/* {t('founder.info')} */}
+                        </p>
                       </div>
                     </div>
                   </div>
