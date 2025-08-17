@@ -16,7 +16,7 @@ const About: React.FC = () => {
   const founders = [
     {
       name: t('founder.name'),
-      role: 'Founder',
+      role: t('foun'),
       image: founder1,
       // description: "The primary goal of Hertz Dynamics is to develop cutting-edge drone'Webnology in aeronautical and nautical surveillance using satellite communications. Its allied interests are aligned towards agricultural surveying, supplying the electromechanical needs to household, industrial machinery and its ancillary services.We are committed to quality craftsmanship, and it is reflected through our industry-wide recognitions, patented'Webnologies, advanced business model, global alliances and customer testimonials. We are extremely proud of our successful project implementations across different industries and digital'Webnologies that has helped us deliver quality digital products at pace and on-demand",
       description: t('founder.info'),
@@ -24,7 +24,7 @@ const About: React.FC = () => {
     },
     {
       name: t('director.name'),
-      role: 'Director',
+      role: t('direct'),
       image: director,
       // description: 'At Hertz Dynamics, we have established a philosophy of collaborating with our customers and partners in their quest for creating a competitive edge. We have a collaborative and transformative approach for establishing a successful partnership with our clients. Our commitment to quality, passion for'Webnology and ensuring that our clients success is our success has helped us establish long-term relationships with our stakeholders.We thank your interest in Hertz Dynamics and look forward to work with you in future to build products and craft your sustainable journey.',
       description: t('director.info'),
@@ -35,21 +35,21 @@ const About: React.FC = () => {
   const team = [
     {
       name: t('member1.name'),
-      role: 'Web Team',
+      role: t('memb'),
       image: member1,
       description: t('member1.info'),
       // achievements: [''],
     },
     {
       name: t('member2.name'),
-      role: 'Web Team',
+      role: t('memb'),
       image: member2,
       description: t('member2.info'),
       // achievements: [''],
     },
     {
       name: t('member3.name'),
-      role: 'Web Team',
+      role: t('memb'),
       image: member3,
       description: t('member3.info'),
       // achievements: [''],
@@ -171,9 +171,9 @@ const About: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Our Mission</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">{t('ourmission')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                To democratize aerial'Webnology and empower industries with innovative drone solutions that enhance human capabilities and create new possibilities.
+                {t('mission')}
               </p>
             </Card>
 
@@ -181,9 +181,9 @@ const About: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Award className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Our Vision</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">{t('ourvision')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                To be the global leader in autonomous aerial systems, driving innovation that transforms how the world works, explores, and connects.
+                {t('vision')}
               </p>
             </Card>
 
@@ -191,9 +191,9 @@ const About: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Our Values</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">{t('ourvalues')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Innovation, reliability, and safety guide everything we do. We believe in creating'Webnology that serves humanity and protects our planet.
+                {t('values')}
               </p>
             </Card>
           </div>

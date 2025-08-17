@@ -185,10 +185,9 @@ const Enquiry: React.FC = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-primary mb-6">Get in Touch</h2>
+                <h2 className="text-3xl font-bold text-primary mb-6">{t('enquiry.touch')}</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Ready to revolutionize your operations with cutting-edge drone technology?
-                  Our team of experts is here to help you find the perfect solution for your needs.
+                  {t('enquiry.belowtouch')}
                 </p>
               </div>
 
@@ -215,7 +214,7 @@ const Enquiry: React.FC = () => {
                 ))}
               </div>
 
-              <Card className="bg-gradient-accent border-none">
+              {/* <Card className="bg-gradient-accent border-none">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-primary mb-4">Why Choose Hertz Dynamics?</h3>
                   <ul className="space-y-3">
@@ -237,14 +236,14 @@ const Enquiry: React.FC = () => {
                     </li>
                   </ul>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gradient-accent">
+      {/* <section className="py-20 bg-gradient-accent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-primary mb-6">Frequently Asked Questions</h2>
@@ -281,7 +280,7 @@ const Enquiry: React.FC = () => {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>
