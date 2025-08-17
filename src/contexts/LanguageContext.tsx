@@ -60,6 +60,8 @@ const translations: Record<string, Record<string, string>> = {
     'member1.info': "Btech final year NIT Warangal",
     'member2.name': "Rishabh Raturi",
     'member2.info': "Btech second year NIT Warangal",
+    'member3.name': "Arnav Jain",
+    'member3.info': "Btech second year NIT Warangal",
 
     'enquiry.title': 'Get in Touch',
     'enquiry.subtitle': 'Ready to discuss your drone technology needs?',
