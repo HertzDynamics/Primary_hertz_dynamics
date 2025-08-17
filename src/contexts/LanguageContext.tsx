@@ -55,6 +55,12 @@ const translations: Record<string, Record<string, string>> = {
     'director.info': 'At Hertz Dynamics, we have established a philosophy of collaborating with our customers and partners in their quest for creating a competitive edge. We have a collaborative and transformative approach for establishing a successful partnership with our clients. Our commitment to quality, passion for technology and ensuring that our clients success is our success has helped us establish long-term relationships with our stakeholders.We thank your interest in Hertz Dynamics and look forward to work with you in future to build products and craft your sustainable journey.',
     'founder.name': "Dr. Srinivasan Pradabane",
     'director.name': "Dr. Sakunthala Srinivasan",
+
+    'member1.name': "Lav Tripathi",
+    'member1.info': "Btech final year NIT Warangal",
+    'member2.name': "Rishabh Raturi",
+    'member2.info': "Btech second year NIT Warangal",
+
     'enquiry.title': 'Get in Touch',
     'enquiry.subtitle': 'Ready to discuss your drone technology needs?',
     'form.name': 'Full Name',
