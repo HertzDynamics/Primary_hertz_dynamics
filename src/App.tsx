@@ -10,6 +10,8 @@ import Enquiry from "./pages/Enquiry";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import LoadingSpinner from "./components/LoadingSpinner";
+import { Analytics } from '@vercel/analytics/react';
+
 
 const queryClient = new QueryClient();
 
@@ -32,7 +34,9 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
+    <Analytics />
   </QueryClientProvider>
+  
 );
 
 export default App;
