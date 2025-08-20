@@ -285,8 +285,8 @@ const translations: Record<string, Record<string, string>> = {
     'member3.name': "Arnav Jain",
     'member3.info': "B.Tech deuxième année, NIT Warangal",
     'mission': "Démocratiser la technologie aérienne et autonomiser les industries grâce à des solutions de drones innovantes qui améliorent les capacités humaines et créent de nouvelles possibilités.",
-    'vision': "Être le leader mondial des systèmes aériens autonomes, en stimulant l\'innovation qui transforme la façon dont le monde travaille, explore et se connecte.",
-    'values': "L\'innovation, la fiabilité et la sécurité guident toutes nos actions. Nous croyons en la création de technologies qui servent l\'humanité et protègent notre planète.",
+    'vision': "Être le leader mondial des systèmes aériens autonomes, en stimulant'innovation qui transforme la façon dont le monde travaille, explore et se connecte.",
+    'values': "innovation, la fiabilité et la sécurité guident toutes nos actions. Nous croyons en la création de technologies qui serventhumanité et protègent notre planète.",
 
 
     'founder.name': "Dr. Srinivasan Pradabane",
@@ -294,7 +294,7 @@ const translations: Record<string, Record<string, string>> = {
     'enquiry.title': 'Contactez-nous',
     'enquiry.subtitle': 'Prêt à discuter de vos besoins en technologie de drones?',
     'enquiry.touch': "Contactez-nous",
-    'enquiry.belowtouch': "Prêt à révolutionner vos opérations avec une technologie de drones de pointe ? Notre équipe d\'experts est là pour vous aider à trouver la solution idéale à vos besoins.",
+    'enquiry.belowtouch': "Prêt à révolutionner vos opérations avec une technologie de drones de pointe ? Notre équipe'experts est là pour vous aider à trouver la solution idéale à vos besoins.",
 
     'form.name': 'Nom complet',
     'form.email': 'Adresse e-mail',
