@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef ,createContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,12 +10,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useLanguage, languages } from '@/contexts/LanguageContext';
 import hertzLogo from '@/assets/Pi7_cropper.png';
+import { useContext } from "react";
+import { ThemeContext } from "./ui/themeContext";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
-
   const navItems = [
     { path: '/', label: t('nav.home') },
     { path: '/products', label: t('nav.products') },
@@ -23,29 +24,98 @@ const Navbar: React.FC = () => {
     { path: '/enquiry', label: t('nav.enquiry') },
   ];
 
+    const { theme, toggleTheme } = useContext(ThemeContext);
   const isActive = (path: string) => location.pathname === path;
+  // const [DarkMode, setDarkMode] = useState(() => {
+  //   // Initialize from localStorage, fallback = "sunny"
+  //   return localStorage.getItem("theme") || "sunny";
+  // });
+  // const ThemeContext = createContext(DarkMode);
+  // const [checked, setchecked] = useState(false)
+// useEffect(() => {
+//   const savedTheme = localStorage.getItem("theme");
+//   if (savedTheme) {
+//     setDarkMode(savedTheme);
+//   }
+// }, []);
+
+// const ModeIsChange = () => {
+//   const newTheme = DarkMode === "sunny" ? "nightlight" : "sunny";
+//   setDarkMode(newTheme);
+//   localStorage.setItem("theme", newTheme);
+// };
+  // const ModeIsChange = () => {
+  //   DarkMode === "sunny" ? setDarkMode("Nightlight") : setDarkMode("sunny")
+  //   // checked === true ? setchecked(false) : setchecked(true)
+  //   localStorage.setItem("theme", DarkMode === "sunny" ? "Nightlight" : "sunny")
+  // }
+
+  const [hoverPos, setHoverPos] = useState({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef(null);
+  const handleMouseLeave = () => {
+    setHoverPos((prev) => ({ ...prev, opacity: 0 }));
+  };
+
+  const handleMouseEnter = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+    setHoverPos({
+      left: rect.left - containerRect.left,
+      width: rect.width,
+      opacity: 1,
+    });
+  };
+  // const [hoverIndex, setHoverIndex] = useState(null);
+
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-blue-200 backdrop-blur-md border-b border-border shadow-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-40  backdrop-blur-md  transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)] " : "bg-[var(--darkbackground-color)] " }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img src={hertzLogo} alt="Hertz Dynamics" className="w-13 h-14" />
-            <span className="text-xl font-bold text-primary">{t('company.name')}</span>
+            <span className="text-xl font-bold text-[var(--highlight-color)]">{t('company.name')}</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* <div className="hidden md:flex items-center space-x-10"> */}
+          {/* {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`transition-colors duration-200 ${isActive(item.path)
+                  ? 'text-primary font-medium'
+                  : 'text-foreground hover:text-primary'
+                  }`}
+              >
+                {item.label}
+              </Link>
+            ))}  */}
+          <div
+            ref={containerRef}
+            className="relative hidden md:flex items-center space-x-8"
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* moving highlight box */}
+            <div
+              className="absolute bottom-0 h-8 bg-primary/20 rounded-lg transition-all duration-300 ease-in-out"
+              style={{
+                left: hoverPos.left,
+                width: hoverPos.width,
+                opacity: hoverPos.opacity,
+              }}
+            ></div>
+
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`transition-colors duration-200 ${
-                  isActive(item.path)
-                    ? 'text-primary font-medium'
-                    : 'text-foreground hover:text-primary'
-                }`}
+                onMouseEnter={handleMouseEnter}
+                className={`relative z-10 px-2 py-1 transition-colors duration-200  ${location.pathname === item.path
+                    ? "text-[var(--highlight-color)] font-medium"
+                    : "text-[var(--highlight-color)] hover:text-primary"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -71,10 +141,22 @@ const Navbar: React.FC = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            <button onClick={toggleTheme} className={` p-1 rounded-full flex justify-center items-center transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
+              <span className="material-symbols-outlined ">
+                {theme}
+              </span>
+
+            </button>
+
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex justify-center items-center">
+            <button onClick={toggleTheme} className={` p-1 m-3 rounded-full flex justify-center items-center transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
+              <span className="material-symbols-outlined ">
+                {theme}
+              </span>
+            </button>
             <Button
               variant="ghost"
               size="sm"
@@ -87,24 +169,24 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
+
         {isOpen && (
-          <div className="md:hidden bg-white border-t border-border">
+          <div className={`md:hidden transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)] border-t border-border"}`}>
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${
-                    isActive(item.path)
-                      ? 'text-primary bg-accent font-medium'
-                      : 'text-foreground hover:text-primary hover:bg-accent'
-                  }`}
+                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${isActive(item.path)
+                    ? 'text-primary bg-accent font-medium'
+                    : 'text-foreground hover:text-primary hover:bg-accent'
+                    }`}
                 >
                   {item.label}
                 </Link>
               ))}
-              
+
               {/* Mobile Language Selection */}
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-muted-foreground mb-2">{t('nav.language')}</p>
@@ -116,11 +198,10 @@ const Navbar: React.FC = () => {
                         setLanguage(language);
                         setIsOpen(false);
                       }}
-                      className={`text-left px-2 py-1 rounded text-sm transition-colors ${
-                        currentLanguage.code === language.code
-                          ? 'bg-primary text-primary-foreground'
-                          : 'hover:bg-accent'
-                      }`}
+                      className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-accent'
+                        }`}
                     >
                       {language.nativeName}
                     </button>
@@ -134,5 +215,4 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
 export default Navbar;

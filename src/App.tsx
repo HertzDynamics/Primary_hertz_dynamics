@@ -11,11 +11,13 @@ import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { Analytics } from '@vercel/analytics/react';
-
+import { ThemeProvider } from "./components/ui/themeContext";
 
 const queryClient = new QueryClient();
 
+
 const App = () => (
+  <ThemeProvider>
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <TooltipProvider>
@@ -36,6 +38,7 @@ const App = () => (
     </LanguageProvider>
     <Analytics />
   </QueryClientProvider>
+  </ThemeProvider>
   
 );
 
