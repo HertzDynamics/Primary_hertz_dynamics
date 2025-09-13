@@ -2,6 +2,7 @@ import React, { useState, useRef ,createContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,10 +19,10 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
   const navItems = [
-    { path: '/', label: t('nav.home') },
-    { path: '/products', label: t('nav.products') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/enquiry', label: t('nav.enquiry') },
+    { path: '/', label: t('nav.home'), setposition: { setposition } },
+    { path: '/products', label: t('nav.products'), setposition: { setposition } },
+    { path: '/about', label: t('nav.about'), setposition: { setposition } },
+    { path: '/enquiry', label: t('nav.enquiry'), setposition: { setposition } },
   ];
 
     const { theme, toggleTheme } = useContext(ThemeContext);
@@ -82,6 +83,7 @@ const Navbar: React.FC = () => {
           {/* <div className="hidden md:flex items-center space-x-10"> */}
           {/* {navItems.map((item) => (
               <Link
+                ref={(el) => (refs.current[index] = el)}
                 key={item.path}
                 to={item.path}
                 className={`transition-colors duration-200 ${isActive(item.path)
@@ -120,7 +122,7 @@ const Navbar: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-
+            {/* hover:bg-blue-300 hover:p-2 hover:rounded-[10px] hover:font-bold */}
             {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -182,10 +184,15 @@ const Navbar: React.FC = () => {
                     ? 'text-primary bg-accent font-medium'
                     : 'text-foreground hover:text-primary hover:bg-accent'
                     }`}
+                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${isActive(item.path)
+                    ? 'text-primary bg-accent font-medium'
+                    : 'text-foreground hover:text-primary hover:bg-accent'
+                    }`}
                 >
                   {item.label}
                 </Link>
               ))}
+
 
               {/* Mobile Language Selection */}
               <div className="px-3 py-2">
@@ -198,6 +205,10 @@ const Navbar: React.FC = () => {
                         setLanguage(language);
                         setIsOpen(false);
                       }}
+                      className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
+                        ? 'bg-primary text-primary-foreground'
+                        : 'hover:bg-accent'
+                        }`}
                       className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
                         ? 'bg-primary text-primary-foreground'
                         : 'hover:bg-accent'

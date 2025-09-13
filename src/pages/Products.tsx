@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import drone1 from '@/assets/Drone.png';
+import drone1 from '@/assets/Drone.jpg';
 import drone2 from '@/assets/coreless_dc_motor.jpg';
 import drone3 from '@/assets/Axial_flux_motor.png';
 import drone4 from '@/assets/BLDC_motor.png';
@@ -92,6 +92,7 @@ const Products: React.FC = () => {
             {t('products.title')}
           </h1>
           <p className="text-xl text-[var(--muted-text-color)] max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--muted-text-color)] max-w-3xl mx-auto">
             {t('products.subtitle')}
           </p>
         </div>
@@ -101,10 +102,13 @@ const Products: React.FC = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
             {products.map((product) => (
               <div key={product.id} className="flip-card group">
                 <Card className={`flip-card-inner h-96 cursor-pointer hover:shadow-lg shadow-[var(--shadow-color)] transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
                   {/* Front Side */}
+                  <div className="flip-card-front ">
+                    <CardContent className="p-0 h-full bg-[var(--background-color)]">
                   <div className="flip-card-front ">
                     <CardContent className="p-0 h-full bg-[var(--background-color)]">
                       <div className="relative h-64 overflow-hidden rounded-t-lg">
@@ -115,12 +119,16 @@ const Products: React.FC = () => {
                         />
                         <div className="absolute top-4 right-4 bg-white/90 rounded-full px-3 py-1 flex items-center space-x-1">
                           <Star className="w-4 h-4 fill-yellow-400 text-[var(--highlight-color)] " />
+                          <Star className="w-4 h-4 fill-yellow-400 text-[var(--highlight-color)] " />
                           {/* <span className="text-sm font-medium">{product.rating}</span> */}
                         </div>
                       </div>
                       <div className="p-6 ">
                         <h3 className="text-xl font-bold text-[var(--text-color)] mb-2">{product.name}</h3>
+                      <div className="p-6 ">
+                        <h3 className="text-xl font-bold text-[var(--text-color)] mb-2">{product.name}</h3>
                         {/* <p className="text-2xl font-bold text-foreground mb-4">{product.price}</p> */}
+                        <Button className="w-full bg-gradient-primary hover:bg-[var(--gradient-hover)] hover:opacity-90">
                         <Button className="w-full bg-gradient-primary hover:bg-[var(--gradient-hover)] hover:opacity-90">
                           View Details <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
@@ -132,6 +140,7 @@ const Products: React.FC = () => {
                   <div className="flip-card-back bg-gradient-hero text-white">
                     <CardContent className="p-6 h-full flex flex-col justify-center">
                       <h3 className="text-xl font-bold mb-4">{product.name}</h3>
+                      <p className="text-sm mb-6 flex-grow text-[var(--muted-text-color)]">{product.description}</p>
                       <p className="text-sm mb-6 flex-grow text-[var(--muted-text-color)]">{product.description}</p>
                       <div className="space-y-2 mb-6">
                         {product.features.map((feature, index) => (

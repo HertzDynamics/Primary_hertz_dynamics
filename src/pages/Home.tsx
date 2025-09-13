@@ -36,7 +36,7 @@ const Home: React.FC = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[var(--background-color)]">
         {/* Background Video/Image */}
         <div
           className="absolute inset-0 transition-all duration-300 ease-out"
@@ -54,10 +54,10 @@ const Home: React.FC = () => {
         </div>
 
         {/* Hexagonal pattern overlay */}
-        <div className="absolute inset-0 hex-pattern opacity-20"></div>
+        <div className="absolute inset-0 hex-pattern opacity-20 "></div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 ">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 scroll-reveal">
             {t('hero.title')}
           </h1>
