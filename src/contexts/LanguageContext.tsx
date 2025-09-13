@@ -62,8 +62,8 @@ const translations: Record<string, Record<string, string>> = {
     'vision': 'To be the global leader in autonomous aerial systems, driving innovation that transforms how the world works, explores, and connects.',
     'values': 'Innovation, reliability, and safety guide everything we do. We believe in creating\'Webnology that serves humanity and protects our planet.',
     'ourmission': 'Our Mission',
-    'ourvision': 'Our Mission',
-    'ourvalues': 'Our Mission',
+    'ourvision': 'Our Vision',
+    'ourvalues': 'Our Values',
 
     'member1.name': "Lav Tripathi",
     'member1.info': "Btech final year NIT Warangal",

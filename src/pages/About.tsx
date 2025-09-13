@@ -9,9 +9,13 @@ import director from '@/assets/director.jpg';
 import member1 from '@/assets/member1.jpg';
 import member2 from '@/assets/member2.jpg';
 import member3 from '@/assets/member3.jpg';
+import { useContext } from "react";
+import { ThemeContext } from "@/components/ui/themeContext";
 
 const About: React.FC = () => {
   const { t } = useLanguage();
+    const { theme, toggleTheme } = useContext(ThemeContext);
+  
 
   const founders = [
     {
@@ -57,7 +61,13 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className={`min-h-screen transition ease duration-1000 pt-1 ${
+        theme === "sunny"
+          ? "bg-[var(--background-color)]"
+          : "bg-[var(--darkbackground-color)]"
+      }`}
+    >
       <Navbar />
       {/* Hero Section */}
       {/* <section className="pt-24 pb-16 bg-gradient-accent relative"> */}
@@ -88,7 +98,7 @@ const About: React.FC = () => {
       {/* </section> */}
 
       {/* Founders Section */}
-      <section className="py-20">
+      <section className="py-20 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{t('about.meet')}</h2>
