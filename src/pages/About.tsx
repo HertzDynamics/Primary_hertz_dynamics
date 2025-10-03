@@ -24,37 +24,37 @@ const About: React.FC = () => {
     {
       name: t('founder.name') || 'Founder Name',
       role: t('foun') || 'Founder',
-      image: founder1 as ImageType,
+      image: founder1,
       description: t('founder.info') || 'Founder description goes here.',
     },
     {
       name: t('director.name') || 'Director Name',
       role: t('direct') || 'Director',
-      image: director as ImageType,
+      image: director,
       description: t('director.info') || 'Director description goes here.',
     },
   ];
 
   const webTeam = [
-    { name: t('member1.name') || 'Member One', role: t('memb') || 'Web Dev', image: member1 as ImageType, description: t('member1.info') || '' },
-    { name: t('member2.name') || 'Member Two', role: t('memb') || 'Web Dev', image: member2 as ImageType, description: t('member2.info') || '' },
-    { name: t('member3.name') || 'Member Three', role: t('memb') || 'Web Dev', image: member3 as ImageType, description: t('member3.info') || '' },
+    { name: t('member1.name') || 'Member One', role: t('memb') || 'Web Dev', image: member1, description: t('member1.info') || '' },
+    { name: t('member2.name') || 'Member Two', role: t('memb') || 'Web Dev', image: member2, description: t('member2.info') || '' },
+    { name: t('member3.name') || 'Member Three', role: t('memb') || 'Web Dev', image: member3, description: t('member3.info') || '' },
   ];
 
   const rndTeam = [
-    { name: `${t('member1.name') || 'Member One'} 1`, role: t('memb') || 'R&D', image: member1 as ImageType, description: t('member1.info') || '' },
-    { name: `${t('member2.name') || 'Member Two'} 2`, role: t('memb') || 'R&D', image: member2 as ImageType, description: t('member2.info') || '' },
-    { name: `${t('member3.name') || 'Member Three'} 3`, role: t('memb') || 'R&D', image: member3 as ImageType, description: t('member3.info') || '' },
-    { name: `${t('member1.name') || 'Member One'} 4`, role: t('memb') || 'R&D', image: member1 as ImageType, description: t('member1.info') || '' },
-    { name: `${t('member2.name') || 'Member Two'} 5`, role: t('memb') || 'R&D', image: member2 as ImageType, description: t('member2.info') || '' },
-    { name: `${t('member3.name') || 'Member Three'} 6`, role: t('memb') || 'R&D', image: member3 as ImageType, description: t('member3.info') || '' },
+    { name: `${t('member1.name') || 'Member One'} 1`, role: t('memb') || 'R&D', image: member1, description: t('member1.info') || '' },
+    { name: `${t('member2.name') || 'Member Two'} 2`, role: t('memb') || 'R&D', image: member2, description: t('member2.info') || '' },
+    { name: `${t('member3.name') || 'Member Three'} 3`, role: t('memb') || 'R&D', image: member3, description: t('member3.info') || '' },
+    { name: `${t('member1.name') || 'Member One'} 4`, role: t('memb') || 'R&D', image: member1, description: t('member1.info') || '' },
+    { name: `${t('member2.name') || 'Member Two'} 5`, role: t('memb') || 'R&D', image: member2, description: t('member2.info') || '' },
+    { name: `${t('member3.name') || 'Member Three'} 6`, role: t('memb') || 'R&D', image: member3, description: t('member3.info') || '' },
   ];
 
   // FlipCard component
   const FlipCard: React.FC<{
     name: string;
     role: string;
-    image: ImageType;
+    image: string;
     description: string;
     delay?: number;
     from?: 'left' | 'right';

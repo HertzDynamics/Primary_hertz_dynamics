@@ -1,16 +1,20 @@
 // ThemeContext.tsx
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 
-export const ThemeContext = createContext<any>(null);
+type ThemeContextType = {
+  theme: string;
+  toggleTheme: () => void;
+};
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeContext = createContext<ThemeContextType | null>(null);
+
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "sunny";
   });
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    // Add/remove a class on <html> or <body>
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 

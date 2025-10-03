@@ -85,13 +85,12 @@ const Products: React.FC = () => {
       <Navbar />
       
       {/* Header Section */}
-      <section className={`pt-24 pb-16 transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--gradient-primary)]" : "bg-[var(--darkgradientprimary)]"} relative`}>
+      <section className={`pt-24 pb-16 transition ease duration-1000 ${theme === "sunny" ? "bg-[var(--gradient-primary)]" : "bg-[var(--darkgradientprimary)]"} relative`}>
         <div className="absolute inset-0 hex-pattern opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-[var(--primary-color)] mb-6 ">
+          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6 ">
             {t('products.title')}
           </h1>
-          <p className="text-xl text-[var(--muted-text-color)] max-w-3xl mx-auto">
           <p className="text-xl text-[var(--muted-text-color)] max-w-3xl mx-auto">
             {t('products.subtitle')}
           </p>
@@ -102,14 +101,13 @@ const Products: React.FC = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
             {products.map((product) => (
               <div key={product.id} className="flip-card group">
                 <Card className={`flip-card-inner h-96 cursor-pointer hover:shadow-lg shadow-[var(--shadow-color)] transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
                   {/* Front Side */}
                   <div className="flip-card-front ">
                     <CardContent className="p-0 h-full bg-[var(--background-color)]">
-                  <div className="flip-card-front ">
+                    <div className="flip-card-front ">
                     <CardContent className="p-0 h-full bg-[var(--background-color)]">
                       <div className="relative h-64 overflow-hidden rounded-t-lg">
                         <img 
@@ -125,10 +123,7 @@ const Products: React.FC = () => {
                       </div>
                       <div className="p-6 ">
                         <h3 className="text-xl font-bold text-[var(--text-color)] mb-2">{product.name}</h3>
-                      <div className="p-6 ">
-                        <h3 className="text-xl font-bold text-[var(--text-color)] mb-2">{product.name}</h3>
                         {/* <p className="text-2xl font-bold text-foreground mb-4">{product.price}</p> */}
-                        <Button className="w-full bg-gradient-primary hover:bg-[var(--gradient-hover)] hover:opacity-90">
                         <Button className="w-full bg-gradient-primary hover:bg-[var(--gradient-hover)] hover:opacity-90">
                           View Details <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
@@ -140,7 +135,6 @@ const Products: React.FC = () => {
                   <div className="flip-card-back bg-gradient-hero text-white">
                     <CardContent className="p-6 h-full flex flex-col justify-center">
                       <h3 className="text-xl font-bold mb-4">{product.name}</h3>
-                      <p className="text-sm mb-6 flex-grow text-[var(--muted-text-color)]">{product.description}</p>
                       <p className="text-sm mb-6 flex-grow text-[var(--muted-text-color)]">{product.description}</p>
                       <div className="space-y-2 mb-6">
                         {product.features.map((feature, index) => (
@@ -161,7 +155,6 @@ const Products: React.FC = () => {
           </div>
         </div>
       </section>
-
 
       <Footer />
     </div>

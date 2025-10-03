@@ -110,7 +110,7 @@ const Home: React.FC = () => {
 
             <div className="text-center p-6 bg-gradient-accent rounded-lg hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-white">🛡️</span>
+                <span className="text-2xl text-white">🛡</span>
               </div>
               <h3 className="text-xl font-semibold mb-3">Built to Last</h3>
               <p className="text-muted-foreground">Durable construction designed to withstand demanding operational environments.</p>

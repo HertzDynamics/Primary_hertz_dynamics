@@ -1,6 +1,6 @@
 import React, { useState, useRef ,createContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import {
@@ -18,6 +18,9 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
+  const themeContext = useContext(ThemeContext);
+  const theme = themeContext?.theme ?? "sunny";
+  const toggleTheme = themeContext?.toggleTheme ?? (() => {});
   const navItems = [
     { path: '/', label: t('nav.home'), setposition: { setposition } },
     { path: '/products', label: t('nav.products'), setposition: { setposition } },
@@ -51,8 +54,8 @@ const Navbar: React.FC = () => {
   //   localStorage.setItem("theme", DarkMode === "sunny" ? "Nightlight" : "sunny")
   // }
 
-  const [hoverPos, setHoverPos] = useState({ left: 0, width: 0, opacity: 0 });
-  const containerRef = useRef(null);
+  const [hoverPos, setHoverPos] = useState<{ left: number; width: number; opacity: number }>({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const handleMouseLeave = () => {
     setHoverPos((prev) => ({ ...prev, opacity: 0 }));
   };
@@ -70,7 +73,7 @@ const Navbar: React.FC = () => {
 
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40  backdrop-blur-md  transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)] " : "bg-[var(--darkbackground-color)] " }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-40 backdrop-blur-md transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -121,6 +124,34 @@ const Navbar: React.FC = () => {
               >
                 {item.label}
               </Link>
+            ))}  */}
+          <div
+            ref={containerRef}
+            className="relative hidden md:flex items-center space-x-8"
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* moving highlight box */}
+            <div
+              className="absolute p-3 h-8 bg-primary/20 rounded-lg transition-all duration-300 ease-in-out"
+              style={{
+                left: hoverPos.left,
+                width: hoverPos.width,
+                opacity: hoverPos.opacity,
+              }}
+            ></div>
+
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onMouseEnter={handleMouseEnter}
+                className={`relative z-10 px-2 py-1 transition-colors duration-200  ${location.pathname === item.path
+                    ? "text-primary font-medium"
+                    : "text-primary"
+                }`}
+              >
+                {item.label}
+              </Link>
             ))}
             {/* hover:bg-blue-300 hover:p-2 hover:rounded-[10px] hover:font-bold */}
             {/* Language Dropdown */}
@@ -143,21 +174,36 @@ const Navbar: React.FC = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <button onClick={toggleTheme} className={` p-1 rounded-full flex justify-center items-center transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
-              <span className="material-symbols-outlined ">
-                {theme}
-              </span>
-
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className={`ml-3 p-2 rounded-full flex justify-center items-center border transition-all duration-300 ease-in-out hover:shadow-glow ${
+                theme === 'sunny' ? 'bg-[var(--background-color)] border-border' : 'bg-[var(--darkbackground-color)] border-border'
+              }`}
+            >
+              {theme === 'sunny' ? (
+                <Sun className="w-5 h-5 text-amber-500 transition-transform duration-300 ease-in-out rotate-0 scale-100" />
+              ) : (
+                <Moon className="w-5 h-5 text-blue-300 transition-transform duration-300 ease-in-out rotate-180 scale-95" />
+              )}
             </button>
 
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex justify-center items-center">
-            <button onClick={toggleTheme} className={` p-1 m-3 rounded-full flex justify-center items-center transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
-              <span className="material-symbols-outlined ">
-                {theme}
-              </span>
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className={`p-2 m-3 rounded-full flex justify-center items-center border transition-all duration-300 ease-in-out ${
+                theme === 'sunny' ? 'bg-[var(--background-color)] border-border' : 'bg-[var(--darkbackground-color)] border-border'
+              }`}
+            >
+              {theme === 'sunny' ? (
+                <Sun className="w-6 h-6 text-amber-500 transition-transform duration-300 ease-in-out rotate-0 scale-100" />
+              ) : (
+                <Moon className="w-6 h-6 text-blue-300 transition-transform duration-300 ease-in-out rotate-180 scale-95" />
+              )}
             </button>
             <Button
               variant="ghost"
@@ -173,7 +219,8 @@ const Navbar: React.FC = () => {
         {/* Mobile Navigation */}
 
         {isOpen && (
-          <div className={`md:hidden transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)] border-t border-border"}`}>
+          <div className={`md:hidden transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"} border-t border-border`}>
+    
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link
@@ -181,13 +228,9 @@ const Navbar: React.FC = () => {
                   to={item.path}
                   onClick={() => setIsOpen(false)}
                   className={`block px-3 py-2 rounded-md transition-colors duration-200 ${isActive(item.path)
-                    ? 'text-primary bg-accent font-medium'
-                    : 'text-foreground hover:text-primary hover:bg-accent'
-                    }`}
-                  className={`block px-3 py-2 rounded-md transition-colors duration-200 ${isActive(item.path)
-                    ? 'text-primary bg-accent font-medium'
-                    : 'text-foreground hover:text-primary hover:bg-accent'
-                    }`}
+                      ? 'text-primary bg-accent font-medium'
+                    : 'text-primary hover:bg-accent'
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -206,13 +249,9 @@ const Navbar: React.FC = () => {
                         setIsOpen(false);
                       }}
                       className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-accent'
-                        }`}
-                      className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
-                        ? 'bg-primary text-primary-foreground'
-                        : 'hover:bg-accent'
-                        }`}
+                          ? 'bg-primary text-primary-foreground'
+                          : 'hover:bg-accent'
+                      }`}
                     >
                       {language.nativeName}
                     </button>
