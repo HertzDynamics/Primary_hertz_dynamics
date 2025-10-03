@@ -9,7 +9,7 @@ import About from "./pages/About";
 import Enquiry from "./pages/Enquiry";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import { ThemeProvider } from "./components/ui/themeContext";
+// import { ThemeProvider } from "./components/ui/themeContext";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { Analytics } from '@vercel/analytics/react';
 
