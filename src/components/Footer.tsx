@@ -17,12 +17,12 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-hero text-white relative overflow-hidden">
+    <footer className=" text-gray-500 relative overflow-hidden">
       {/* Hexagonal pattern overlay */}
       <div className="absolute inset-0 hex-pattern opacity-10"></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t-[1px] border-gray-400 pt-6">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                 <a
                   key={label}
                   href={href}
-                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
+                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors duration-200"
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5" />
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-400 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           {/* <p className="text-primary-light text-sm">
             © 2024 Hertz Dynamics. All rights reserved.
           </p> */}

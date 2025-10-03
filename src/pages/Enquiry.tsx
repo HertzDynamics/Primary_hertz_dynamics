@@ -9,8 +9,11 @@ import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useContext } from "react";
+import { ThemeContext } from "@/components/ui/themeContext";
 
 const Enquiry: React.FC = () => {
+      const { theme, toggleTheme } = useContext(ThemeContext);
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,17 +80,29 @@ const Enquiry: React.FC = () => {
     {
       icon: MapPin,
       title: 'Address',
-      value: '133, Level-1, CII, National Institute of Technology, Warangal, Telangana – 506 004. INDIA.',
+      value: '103, Level-1, CII, National Institute of Technology, Warangal, Telangana – 506 004. INDIA.',
       href: '#',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className={`min-h-screen transition ease duration-1000 pt-1 ${
+        theme === "sunny"
+          ? "bg-[var(--background-color)]"
+          : "bg-[var(--darkbackground-color)]"
+      }`}
+    >
       <Navbar />
 
       {/* Header Section */}
-      <section className="pt-24 pb-16 bg-gradient-accent relative">
+      <section
+        className={`pt-24 pb-16 transition ease duration-1000  ${
+          theme === "sunny"
+            ? "bg-[var(--background-color)]"
+            : "bg-[var(--darkbackground-color)]"
+        } relative`}
+      >
         <div className="absolute inset-0 hex-pattern opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">
@@ -288,4 +303,3 @@ const Enquiry: React.FC = () => {
 };
 
 export default Enquiry;
-

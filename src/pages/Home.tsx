@@ -7,8 +7,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import heroDrone from '@/assets/hero-drone.jpg';
 import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { ThemeContext } from "@/components/ui/themeContext";
 
 const Home: React.FC = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
 
@@ -25,7 +28,11 @@ const Home: React.FC = () => {
   const videoOpacity = Math.max(0.3, 1 - scrollY / 800);
 
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen transition ease duration-1000 pt-1 ${
+        theme === "sunny"
+          ? "bg-[var(--background-color)]"
+          : "bg-[var(--darkbackground-color)]"
+      }`}>
       <Navbar />
 
       {/* Hero Section */}
@@ -68,7 +75,11 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Company Section */}
-      <section className="py-20 bg-white relative">
+      <section className={`py-20 relative transition ease duration-1000 pt-1 ${
+        theme === "sunny"
+          ? "bg-[var(--background-color)]"
+          : "bg-[var(--darkbackground-color)]"
+      }`}>
         <div className="absolute inset-0 hex-pattern opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -99,7 +110,7 @@ const Home: React.FC = () => {
 
             <div className="text-center p-6 bg-gradient-accent rounded-lg hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-white">🛡️</span>
+                <span className="text-2xl text-white">🛡</span>
               </div>
               <h3 className="text-xl font-semibold mb-3">Built to Last</h3>
               <p className="text-muted-foreground">Durable construction designed to withstand demanding operational environments.</p>
