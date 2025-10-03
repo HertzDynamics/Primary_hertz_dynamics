@@ -30,39 +30,39 @@ const Enquiry: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  try {
-    const response = await fetch("https://formspree.io/f/mldlkjgo", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      toast({
-        title: "Enquiry Sent Successfully!",
-        description: "We'll get back to you within 24 hours.",
+    try {
+      const response = await fetch("https://formspree.io/f/mldlkjgo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-      setFormData({ name: "", email: "", phone: "", requirements: "" }); // reset form
-    } else {
+
+      if (response.ok) {
+        toast({
+          title: "Enquiry Sent Successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", email: "", phone: "", requirements: "" }); // reset form
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to send enquiry. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to send enquiry. Please try again.",
+        description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    toast({
-      title: "Error",
-      description: "Something went wrong. Please try again later.",
-      variant: "destructive",
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   const contactInfo = [
     {

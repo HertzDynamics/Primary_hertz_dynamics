@@ -99,7 +99,7 @@ const LoadingSpinner: React.FC = () => {
         <h2 className="text-2xl font-bold mb-2">Hertz Dynamics</h2>
         <p className="text-primary-light">Loading drone technology...</p>
       </div>
-    </div>
+        </div>
   );
 };
 

@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   return (
     <footer className=" text-gray-500 relative overflow-hidden">
       {/* Hexagonal pattern overlay */}
-      <div className="absolute inset-0 hex-pattern opacity-10"></div>
+      <div className="absolute inset-0 hex-pattern opacity-10 "></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-t-[1px] border-gray-400 pt-6">
@@ -27,16 +27,8 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <img src={hertzLogo} alt="Hertz Dynamics" className="w-10 h-12" />
-              <span className="text-2xl font-bold">{t('company.name')}</span>
+              <span className="text-2xl font-bold text-primary">{t('company.name')}</span>
             </div>
-            {/* <p className="text-primary-light mb-6 max-w-md">
-              {t('about.description1')}
-            </p>
-            <p className="text-primary-light mb-6 max-w-md">
-              {t('about.description2')}
-            </p> */}
-            
-            {/* Social Media */}
             <div className="flex space-x-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a

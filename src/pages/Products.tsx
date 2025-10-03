@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import drone1 from '@/assets/Drone.png';
+import drone1 from '@/assets/Drone.jpg';
 import drone2 from '@/assets/coreless_dc_motor.jpg';
 import drone3 from '@/assets/Axial_flux_motor.png';
 import drone4 from '@/assets/BLDC_motor.png';
@@ -106,6 +106,8 @@ const Products: React.FC = () => {
                 <Card className={`flip-card-inner h-96 cursor-pointer hover:shadow-lg shadow-[var(--shadow-color)] transition ease duration-1000 pt-1 ${theme === "sunny" ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"}`}>
                   {/* Front Side */}
                   <div className="flip-card-front ">
+                    <CardContent className="p-0 h-full bg-[var(--background-color)]">
+                    <div className="flip-card-front ">
                     <CardContent className="p-0 h-full bg-[var(--background-color)]">
                       <div className="relative h-64 overflow-hidden rounded-t-lg">
                         <img 

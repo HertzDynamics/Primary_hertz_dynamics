@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef ,createContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,13 +22,13 @@ const Navbar: React.FC = () => {
   const theme = themeContext?.theme ?? "sunny";
   const toggleTheme = themeContext?.toggleTheme ?? (() => {});
   const navItems = [
-    { path: '/', label: t('nav.home') },
-    { path: '/products', label: t('nav.products') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/enquiry', label: t('nav.enquiry') },
+    { path: '/', label: t('nav.home'), setposition: { setposition } },
+    { path: '/products', label: t('nav.products'), setposition: { setposition } },
+    { path: '/about', label: t('nav.about'), setposition: { setposition } },
+    { path: '/enquiry', label: t('nav.enquiry'), setposition: { setposition } },
   ];
 
-
+    const { theme, toggleTheme } = useContext(ThemeContext);
   const isActive = (path: string) => location.pathname === path;
   // const [DarkMode, setDarkMode] = useState(() => {
   //   // Initialize from localStorage, fallback = "sunny"
@@ -59,10 +60,9 @@ const Navbar: React.FC = () => {
     setHoverPos((prev) => ({ ...prev, opacity: 0 }));
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const containerRect = containerRef.current?.getBoundingClientRect();
-    if (!containerRect) return;
+  const handleMouseEnter = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
     setHoverPos({
       left: rect.left - containerRect.left,
       width: rect.width,
@@ -79,19 +79,48 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img src={hertzLogo} alt="Hertz Dynamics" className="w-13 h-14" />
-            <span className="text-xl font-bold text-primary">{t('company.name')}</span>
+            <span className="text-xl font-bold text-[var(--highlight-color)]">{t('company.name')}</span>
           </Link>
 
           {/* Desktop Navigation */}
           {/* <div className="hidden md:flex items-center space-x-10"> */}
           {/* {navItems.map((item) => (
               <Link
+                ref={(el) => (refs.current[index] = el)}
                 key={item.path}
                 to={item.path}
                 className={`transition-colors duration-200 ${isActive(item.path)
-                    ? 'text-primary font-medium'
-                    : 'text-foreground hover:text-primary'
-                }`}
+                  ? 'text-primary font-medium'
+                  : 'text-foreground hover:text-primary'
+                  }`}
+              >
+                {item.label}
+              </Link>
+            ))}  */}
+          <div
+            ref={containerRef}
+            className="relative hidden md:flex items-center space-x-8"
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* moving highlight box */}
+            <div
+              className="absolute bottom-0 h-8 bg-primary/20 rounded-lg transition-all duration-300 ease-in-out"
+              style={{
+                left: hoverPos.left,
+                width: hoverPos.width,
+                opacity: hoverPos.opacity,
+              }}
+            ></div>
+
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onMouseEnter={handleMouseEnter}
+                className={`relative z-10 px-2 py-1 transition-colors duration-200  ${location.pathname === item.path
+                    ? "text-[var(--highlight-color)] font-medium"
+                    : "text-[var(--highlight-color)] hover:text-primary"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -124,7 +153,7 @@ const Navbar: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-
+            {/* hover:bg-blue-300 hover:p-2 hover:rounded-[10px] hover:font-bold */}
             {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -190,7 +219,8 @@ const Navbar: React.FC = () => {
         {/* Mobile Navigation */}
 
         {isOpen && (
-          <div className={`md:hidden transition ease duration-500 ${theme === "sunny" ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"} border-t border-border`}>
+          <div className={`md:hidden transition ease duration-500 ${(theme === "sunny") ? "bg-[var(--background-color)]" : "bg-[var(--darkbackground-color)]"} border-t border-border`}>
+    
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link
@@ -205,7 +235,8 @@ const Navbar: React.FC = () => {
                   {item.label}
                 </Link>
               ))}
-              
+
+
               {/* Mobile Language Selection */}
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-muted-foreground mb-2">{t('nav.language')}</p>
@@ -235,176 +266,3 @@ const Navbar: React.FC = () => {
   );
 };
 export default Navbar;
-// import React, { useState, useRef } from 'react';
-// import { Link, useLocation } from 'react-router-dom';
-// import { Menu, X, ChevronDown } from 'lucide-react';
-// import { Button } from '@/components/ui/button';
-// import { motion } from 'framer-motion';
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from '@/components/ui/dropdown-menu';
-// import { useLanguage, languages } from '@/contexts/LanguageContext';
-// import hertzLogo from '@/assets/Pi7_cropper.png';
-// import { set } from 'date-fns';
-
-// const Navbar: React.FC = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const location = useLocation();
-//   const { currentLanguage, setLanguage, t } = useLanguage();
-
-//   const refs = useRef([]);
-//   const [position, setposition] = useState({
-//     left: 0,
-//     width: 0,
-//     opacity: 1
-//   })
-
-//   React.useEffect(() => {
-//     if (refs.current[0]) {
-//       const first = refs.current[0];
-//       setposition({
-//         left: first.offsetLeft,
-//         width: 0,
-//         opacity: 1
-//       });
-//     }
-//   }, []);
-
-//   const navItems = [
-//     { path: '/', label: t('nav.home'), setposition: { setposition } },
-//     { path: '/products', label: t('nav.products'), setposition: { setposition } },
-//     { path: '/about', label: t('nav.about'), setposition: { setposition } },
-//     { path: '/enquiry', label: t('nav.enquiry'), setposition: { setposition } },
-//   ];
-
-//   const isActive = (path: string) => location.pathname === path;
-
-//   const handleHover = (index) => {
-//     if (!refs.current[index]) return;
-//     const data = refs.current[index].getBoundingClientRect()
-//     setposition({
-//       left: refs.current[index].offsetLeft - 5,
-//       width: data.width + 10,
-//       opacity: 1
-//     })
-//   };
-
-//   return (
-//     <nav className="fixed top-0 left-0 right-0 z-40 bg-[var(--background-color)] backdrop-blur-md pt-2">
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="flex justify-between items-center h-16">
-//           {/* Logo */}
-//           <Link to="/" className="flex items-center space-x-3">
-//             <img src={hertzLogo} alt="Hertz Dynamics" className="w-13 h-14" />
-//             <span className="text-xl font-bold text-blue-900">{t('company.name')}</span>
-//           </Link>
-
-//           {/* Desktop Navigation */}
-//           <div className="hidden md:flex items-center space-x-10 relative " onMouseLeave={() => setposition((prev) => ({ ...prev, opacity: 0 }))}>
-//             <motion.div style={position} animate={position} transition={{
-//               type: "spring",
-//               stiffness: 500,  // higher = snappier
-//               damping: 30,     // lower = more bounce, higher = less bounce
-//             }} className="slider absolute bg-[#a5e8c066] h-9 rounded-xl"></motion.div>
-//             {navItems.map((item, index) => (
-//               <Link
-//                 ref={(el) => (refs.current[index] = el)}
-//                 key={item.path}
-//                 to={item.path}
-//                 onMouseEnter={() => handleHover(index)}
-//                 className={`text-[#111827] z-10 transition-all ease-in-out duration-300 
-//                   ${isActive(item.path)
-//                     ? 'font-medium'
-//                     : 'text-foreground'
-//                   }`}
-//               >
-//                 {item.label}
-//               </Link>
-//             ))}
-//             {/* hover:bg-blue-300 hover:p-2 hover:rounded-[10px] hover:font-bold */}
-//             {/* Language Dropdown */}
-//             <DropdownMenu>
-//               <DropdownMenuTrigger asChild>
-//                 <Button variant="outline" className="flex items-center space-x-2">
-//                   <span>{currentLanguage.nativeName}</span>
-//                   <ChevronDown className="w-4 h-4" />
-//                 </Button>
-//               </DropdownMenuTrigger>
-//               <DropdownMenuContent align="end">
-//                 {languages.map((language) => (
-//                   <DropdownMenuItem
-//                     key={language.code}
-//                     onClick={() => setLanguage(language)}
-//                     className={currentLanguage.code === language.code ? 'bg-accent' : ''}
-//                   >
-//                     {language.nativeName}
-//                   </DropdownMenuItem>
-//                 ))}
-//               </DropdownMenuContent>
-//             </DropdownMenu>
-//           </div>
-
-//           {/* Mobile menu button */}
-//           <div className="md:hidden">
-//             <Button
-//               variant="ghost"
-//               size="sm"
-//               onClick={() => setIsOpen(!isOpen)}
-//               className="p-2"
-//             >
-//               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-//             </Button>
-//           </div>
-//         </div>
-
-//         {/* Mobile Navigation */}
-//         {isOpen && (
-//           <div className="md:hidden bg-white border-t border-border">
-//             <div className="px-2 pt-2 pb-3 space-y-1">
-//               {navItems.map((item) => (
-//                 <Link
-//                   key={item.path}
-//                   to={item.path}
-//                   onClick={() => setIsOpen(false)}
-//                   className={`block px-3 py-2 rounded-md transition-colors duration-200 ${isActive(item.path)
-//                     ? 'text-primary bg-accent font-medium'
-//                     : 'text-foreground hover:text-primary hover:bg-accent'
-//                     }`}
-//                 >
-//                   {item.label}
-//                 </Link>
-//               ))}
-
-//               {/* Mobile Language Selection */}
-//               <div className="px-3 py-2">
-//                 <p className="text-sm font-medium text-muted-foreground mb-2">{t('nav.language')}</p>
-//                 <div className="grid grid-cols-2 gap-2">
-//                   {languages.map((language) => (
-//                     <button
-//                       key={language.code}
-//                       onClick={() => {
-//                         setLanguage(language);
-//                         setIsOpen(false);
-//                       }}
-//                       className={`text-left px-2 py-1 rounded text-sm transition-colors ${currentLanguage.code === language.code
-//                         ? 'bg-primary text-primary-foreground'
-//                         : 'hover:bg-accent'
-//                         }`}
-//                     >
-//                       {language.nativeName}
-//                     </button>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
