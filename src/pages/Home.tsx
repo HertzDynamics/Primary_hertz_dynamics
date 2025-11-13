@@ -9,6 +9,7 @@ import heroDrone from '@/assets/hero-drone.jpg';
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { ThemeContext } from "@/components/ui/themeContext";
+import ConnectingDotsBackground from '@/components/homepagebg';
 
 const Home: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -36,9 +37,13 @@ const Home: React.FC = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[var(--background-color)]">
+      <section className={`relative h-screen flex items-center justify-center overflow-hidden ${
+        theme === "sunny"
+          ? "bg-[var(--background-color)]"
+          : "bg-[var(--darkbackground-color)]"
+      }`}>
         {/* Background Video/Image */}
-        <div
+        {/* <div
           className="absolute inset-0 transition-all duration-300 ease-out"
           style={{
             transform: `scale(${videoScale})`,
@@ -51,13 +56,14 @@ const Home: React.FC = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 hero-overlay"></div>
-        </div>
-
-        {/* Hexagonal pattern overlay */}
-        <div className="absolute inset-0 hex-pattern opacity-20 "></div>
-
+        </div> */}  
+                <div className="absolute inset-0 hex-pattern opacity-20 ">
+            <ConnectingDotsBackground>
+              <div className="absolute inset-0 hex-pattern opacity-20 "></div>
+            </ConnectingDotsBackground>
+          </div>
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 ">
+        <div className="relative z-10 text-center text-primary max-w-4xl mx-auto px-4 ">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 scroll-reveal">
             {t('hero.title')}
           </h1>

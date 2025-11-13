@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img src={hertzLogo} alt="Hertz Dynamics" className="w-13 h-14" />
-            <span className="text-xl font-bold text-[var(--highlight-color)]">{t('company.name')}</span>
+            <span className="text-xl font-bold text-primary">{t('company.name')}</span>
           </Link>
 
           {/* Desktop Navigation */}

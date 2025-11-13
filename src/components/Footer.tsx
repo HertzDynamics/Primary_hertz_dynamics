@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className=" text-gray-500 relative overflow-hidden">
+    <footer className=" text-gray-500 bg-[#E0F7FA] relative overflow-hidden">
       {/* Hexagonal pattern overlay */}
       <div className="absolute inset-0 hex-pattern opacity-10 "></div>
       
